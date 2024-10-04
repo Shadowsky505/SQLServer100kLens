@@ -1,19 +1,16 @@
-#!/bin/bash
-
-# Variables
-CONTAINER_NAME="happy_fermi"
+CONTAINER_NAME="sql1"
 SERVER="localhost"
 USER="SA"
-PASSWORD="Paloma1132**"
+PASSWORD="Contrastrasena(2024)"
 DATABASE="votos"
 SQLCMD_PATH="/opt/mssql-tools18/bin/sqlcmd"  
 
 docker exec -i $CONTAINER_NAME /bin/bash -c "
-$SQLCMD_PATH -S $SERVER -U $USER -P $PASSWORD -N -C -Q \"
+$SQLCMD_PATH -S $SERVER -U $USER -P '$PASSWORD' -N -C -Q \"\
 IF EXISTS (SELECT * FROM sys.databases WHERE name = '$DATABASE')
 BEGIN
-    DROP DATABASE [$DATABASE];
-END
+    DROP DATABASE [$DATABASE];d
+END;
 GO
 
 CREATE DATABASE [$DATABASE];
